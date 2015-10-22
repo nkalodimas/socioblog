@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	
+	<mapping >
+		<class-a>gr.uoa.di.scan.thesis.entity.User</class-a>
+		<class-b>gr.uoa.di.scan.thesis.dto.UserDTO</class-b>
+		<field-exclude>
+			<a>posts</a>
+			<b>posts</b>
+		</field-exclude>
+		<field-exclude>
+			<a>comments</a>
+			<b>comments</b>
+		</field-exclude>
+		<field type="one-way">
+			<a>postsCount</a>
+			<b>postsCount</b>
+		</field>
+		<field type="one-way">
+			<a>commentsCount</a>
+			<b>commentsCount</b>
+		</field>
+	</mapping>
+	<mapping >
+		<class-a>gr.uoa.di.scan.thesis.entity.SocialUser</class-a>
+		<class-b>gr.uoa.di.scan.thesis.dto.SocialUserDTO</class-b>
+		<field-exclude type="one-way">
+			<a>user</a>
+			<b>user</b>
+		</field-exclude>
+	</mapping>
+	<mapping >
+		<class-a>gr.uoa.di.scan.thesis.entity.Comment</class-a>
+		<class-b>gr.uoa.di.scan.thesis.dto.CommentDTO</class-b>
+		<field-exclude type="one-way">
+			<a>postedInPost</a>
+			<b>postedInPost</b>
+		</field-exclude>
+		<field-exclude type="one-way">
+			<a>postedInComment</a>
+			<b>postedInComment</b>
+		</field-exclude>
+	</mapping>
+	<mapping >
+		<class-a>gr.uoa.di.scan.thesis.entity.Tag</class-a>
+		<class-b>gr.uoa.di.scan.thesis.dto.TagDTO</class-b>
+		<field-exclude>
+			<a>posts</a>
+			<b>posts</b>
+		</field-exclude>
+		<field type="one-way">
+			<a>postsCount</a>
+			<b>postsCount</b>
+		</field>
+	</mapping>
+	<mapping map-id="fullUser">
+		<class-a>gr.uoa.di.scan.thesis.entity.User</class-a>
+		<class-b>gr.uoa.di.scan.thesis.dto.UserDTO</class-b>	
+		<field map-id="postOfFullUser">
+			<a>posts</a>
+			<b>posts</b>
+		</field>
+		<field map-id="commentOfFullUser">
+			<a>comments</a>
+			<b>comments</b>
+		</field>
+	</mapping>
+	<mapping map-id="commentOfFullUser" wildcard="false">
+		<class-a>gr.uoa.di.scan.thesis.entity.Comment</class-a>
+		<class-b>gr.uoa.di.scan.thesis.dto.CommentDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+		<field>
+			<a>body</a>
+			<b>body</b>
+		</field>
+	</mapping>
+	<mapping map-id="postOfFullUser" wildcard="false">
+		<class-a>gr.uoa.di.scan.thesis.entity.Post</class-a>
+		<class-b>gr.uoa.di.scan.thesis.dto.PostDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+		<field>
+			<a>title</a>
+			<b>title</b>
+		</field>
+	</mapping>
+</mappings>

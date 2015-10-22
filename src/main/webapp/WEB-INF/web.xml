@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd "
+	version="3.0">
+
+	<display-name>thesis-webapp-sping-angularjs</display-name>
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>CORS</filter-name>
+		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+		<init-param>
+			<param-name>cors.allowGenericHttpRequests</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.allowOrigin</param-name>
+			<param-value>*</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.allowSubdomains</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportedMethods</param-name>
+			<param-value>GET, HEAD, POST, OPTIONS, PUT, DELETE</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportedHeaders</param-name>
+			<param-value>Content-Type, X-Requested-With</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.exposedHeaders</param-name>
+			<param-value>X-Test-1, X-Test-2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportsCredentials</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.maxAge</param-name>
+			<param-value>-1</param-value>
+		</init-param>
+	</filter>
+
+<filter>
+    <filter-name>simpleCORSFilter</filter-name>
+    <filter-class>gr.uoa.di.scan.thesis.security.SimpleCORSFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>simpleCORSFilter</filter-name>
+    <url-pattern>/api/*</url-pattern>
+</filter-mapping>
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>CORS</filter-name> -->
+<!-- 		<url-pattern>/api/*</url-pattern> -->
+<!-- 		</filter-mapping> -->
+
+	<filter>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<url-pattern>/api/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>atmoWebServlet</servlet-name>
+		<servlet-class>org.atmosphere.cpr.MeteorServlet</servlet-class>
+
+		<init-param>
+			<param-name>org.atmosphere.servlet</param-name>
+			<param-value>org.springframework.web.servlet.DispatcherServlet</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:context.xml</param-value>
+		</init-param>
+
+<!-- 		<init-param> -->
+<!-- 			<param-name>org.atmosphere.filter</param-name> -->
+<!-- 			<param-value>org.springframework.web.filter.DelegatingFilterProxy</param-value> -->
+<!-- 		</init-param> -->
+
+<!-- 		<init-param> -->
+<!-- 			<param-name>org.atmosphere.filter.name</param-name> -->
+<!-- 			<param-value>springSecurityFilterChain</param-value> -->
+<!-- 		</init-param> -->
+
+<!-- <init-param> -->
+<!-- <param-name>org.atmosphere.filter.name</param-name> -->
+<!-- <param-value>CORS</param-value> -->
+<!-- </init-param> -->
+<!-- 		<init-param> -->
+<!-- 			<param-name>filterMappingUrlPattern</param-name> -->
+<!-- 			<param-value>/api/*</param-value> -->
+<!-- 		</init-param> -->
+
+		<init-param>
+			<param-name>org.atmosphere.cpr.broadcasterClass</param-name>
+			<param-value>org.atmosphere.cpr.DefaultBroadcaster</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>org.atmosphere.cpr.broadcaster.shareableThreadPool</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>org.atmosphere.useNative</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>org.atmosphere.useWebSocket</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>org.atmosphere.useStream</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
+		
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>atmoWebServlet</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:app-context.xml</param-value>
+	</context-param>
+	
+</web-app>

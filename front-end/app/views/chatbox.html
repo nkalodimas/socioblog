@@ -1,0 +1,23 @@
+<!-- Blog Chat box Well -->
+<div ng-controller="ChatCtrl" class="well">
+    <h4>Chat</h4>
+    <div class="atmo">
+        <form role="form" ng-submit="sendMessage()" >
+        <div class="input-group col-lg-12">
+            <input type="text" class="form-control" ng-model="message"
+                   placeholder="Type...">
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary pull-right">Send</button>
+            </span>
+        </div>
+        </form>
+    </div>
+    <div ng-hide="messages.empty()">
+        <ul class="list-group" id="chatBox">
+            <li class="list-group-item" ng-repeat="msg in messages | orderBy:'-time'">
+                <span class="badge">{{msg.time | date:'HH:mm:ss'}}</span>
+                {{msg.author}}: {{msg.body}}
+            </li>
+        </ul>
+    </div>
+</div>

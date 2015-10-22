@@ -1,0 +1,78 @@
+<!-- Blog Post -->
+<form role="form" ng-submit="savePost()">
+
+<!-- Title -->
+<input ng-show="editable" type="text" class="form-control" id="title" value="{{ post.title }}" ng-model="post.title">
+<h1 ng-hide="editable" >{{ post.title }}</h1>
+
+<p>
+    <span class="glyphicon glyphicon-user"></span> <a href="#/users/{{post.createdBy.id}}">{{ post.createdBy.username }}</a>
+    <span class="glyphicon glyphicon-time"></span> Posted on {{ post.created | date:'medium' }} <span class="glyphicon glyphicon-tag"></span> <a ng-href="#/posts/{{tag.title}}/1" ng-repeat="tag in post.tags">{{$first ? '':',' }}{{ tag.title }}</a> <span class="glyphicon glyphicon-comment"></span> {{ post.comments.length }}
+</p>
+<hr>
+<!--Buttons-->
+<!--    TODO add ng-show isOwner()-->
+<button type="button" class="btn btn-warn" ng-show="$root.loggedIn()" ng-click="addTags()">{{ addingTags ? 'Save tags' : 'Add tags' }}</button>
+<button type="button" class="btn btn-warn" ng-hide="!$root.loggedIn() || editable" ng-click="editPost()">Edit post</button>
+<button type="submit" class="btn btn-success" ng-show="$root.loggedIn() && editable">Save changes</button>
+<button type="button" class="btn btn-danger" ng-show="$root.loggedIn() || $root.isAdmin()" ng-click="deletePost()">Delete post</button>
+<select multiple class="form-control" ng-model="selectedValues" ng-options="tag as tag.title for tag in tags" ng-show="$root.loggedIn() && addingTags"></select>
+<hr>
+
+<!-- Preview Image -->
+<img class="img-responsive" src="http://placehold.it/900x300" alt="">
+
+<hr>
+
+<!-- Post Content -->
+<textarea ng-show="editable" class="form-control" id="body" rows="10" ng-model="post.body" >{{ $post.body }}</textarea>
+<p ng-hide="editable" >{{ post.body }}</p>
+</form>
+<hr>
+
+<div ng-show="$root.loggedIn()">
+Share this post:<br/><br/>
+<button type="button" class="btn btn-primary" ng-click="sharePost('facebook')">Share on fb</button>
+<hr>
+</div>
+<!-- Blog Comments -->
+
+<!-- Comments Form -->
+<div ng-show="$root.loggedIn()" class="well" id="add-comment">
+    <h4>Leave a Comment:</h4>
+    <form role="form" ng-submit="submitComment()">
+        <div class="form-group">
+            <textarea class="form-control" rows="3" ng-model="comment.body"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<!-- Posted Comments -->
+
+<!-- Comment -->
+<div class="media" ng-repeat="comment in post.comments | orderBy:'dateCreated'">
+    <a class="pull-left" href="#/users/{{ comment.postedBy.id }}">
+        <!--        TODO add user's picture-->
+        <img class="media-object" src="http://placehold.it/64x64" alt="">
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">{{ comment.postedBy.username }}
+            <small>{{ comment.dateCreated | date:'medium' }}</small>
+        </h4>
+        {{ comment.body }}
+        <!-- Nested Comment -->
+        <div class="media" ng-repeat="nestedComment in comment.comments | orderBy:'dateCreated'">
+            <a class="pull-left" href="{{ nestedComment.postedBy.id }}">
+                <img class="media-object" src="http://placehold.it/64x64" alt="">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">{{ nestedComment.postedBy.username }}
+                    <small>{{ nestedComment.dateCreated | date:'medium' }}</small>
+                </h4>
+                {{ nestedComment.body}}
+            </div>
+        </div>
+        <!-- End Nested Comment -->
+    </div>
+</div>

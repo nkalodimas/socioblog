@@ -1,0 +1,11 @@
+<h3>Users page</h3>
+<form ng-submit="submitUser()">
+    <label>Username:</label><input type="text" ng-model="user.username" /><br />
+    <label>Email:</label><input type="email" ng-model="user.email" /><br />
+    <label>Password:</label><input type="password" ng-model="user.password" /><br />
+    <input type="submit" value="Add User" />
+</form>
+<div ng-repeat="(userId, user) in users">
+  <a href="#/users/{{ userId }}">{{ user.username }}</a> : {{user.email}} : {{user.password}} : {{userId}}
+  <a ng-click="deleteUser(userId)">delete</a>
+</div>

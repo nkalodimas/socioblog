@@ -1,0 +1,18 @@
+<h1 class="page-header">About blogger</h1>
+<div class="media">
+    <a class="pull-left" href>
+        <!--        TODO add user's picture-->
+        <img class="media-object" src="http://placehold.it/128x128" alt="{{ user.username }}">
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">
+            {{ user.username }}
+        </h4>
+        <small>{{ user.description }}</small>
+    </div>
+</div>
+<br/>
+<hr>
+<a ng-href="#/users/{{ user.id }}/posts/1">View all posts({{ user.posts.length }})</a>
+<br/>
+<span>Comments ({{ user.comments.length }})</span>

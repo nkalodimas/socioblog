@@ -1,0 +1,21 @@
+<h1 class="page-header">My Account</h1>
+
+<form role="form" ng-submit="editUser()">
+  <div class="input-group account-input-group">
+    <span class="input-group-addon">Username</span>
+    <input type="text" class="form-control account-input" id="username" placeholder="Enter title" ng-model="user.username" ng-disabled="!editable">
+  </div>
+  <div class="input-group account-input-group">
+    <span class="input-group-addon">Email</span>
+    <input type="email" class="form-control account-input" id="email" placeholder="Enter email" ng-model="user.email" ng-disabled="!editable">
+  </div>
+  <div class="input-group account-input-group">
+    <span class="input-group-addon">Description</span>
+    <textarea class="form-control account-input" id="description" rows="2" 
+              ng-disabled="!editable" ng-model="user.description"
+              placeholder="Enter description of yourself"></textarea>
+  </div>
+  <br/>
+  <button type="submit" class="btn btn-primary" ng-hide="editable">Change details</button>
+  <button type="submit" class="btn btn-success" ng-show="editable">Save changes</button>
+</form>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title>Socioblog</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
+    <!-- endbower -->
+
+    <!-- endbuild -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/menu.css">
+    <!-- endbuild -->
+</head>
+
+<body ng-app="frontEndApp">
+    <!-- Add your site or application content here -->
+    <nav ng-include="'views/menu.html'" class="navbar navbar-inverse navbar-fixed-top" role="navigation"></nav>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Main Column -->
+            <div class="col-xs-8" ng-view ></div>
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-xs-4">
+                <div ng-include="'views/sidesearch.html'"></div>
+                <div ng-include="'views/sidecategories.html'"></div>
+                <div ng-include="'views/chatbox.html'"></div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Socioblog 2014</p>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
+    </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/atmosphere/atmosphere.js"></script>
+    <script src="bower_components/jquery-atmosphere/jquery.atmosphere.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+<!--    <script src="scripts/controllers/main.js"></script>-->
+    <script src="scripts/controllers/users.js"></script>
+    <script src="scripts/controllers/userview.js"></script>
+    <script src="scripts/controllers/myaccount.js"></script>
+    <script src="scripts/services/user.js"></script>
+    <script src="scripts/controllers/posts.js"></script>
+    <script src="scripts/controllers/postcreate.js"></script>
+    <script src="scripts/controllers/postview.js"></script>
+    <script src="scripts/controllers/search.js"></script>
+    <script src="scripts/controllers/userposts.js"></script>
+    <script src="scripts/services/post.js"></script>
+    <script src="scripts/controllers/tags.js"></script>
+    <script src="scripts/services/tag.js"></script>
+    <script src="scripts/controllers/auth.js"></script>
+    <script src="scripts/controllers/admin.js"></script>
+    <script src="scripts/services/auth.js"></script>
+    <script src="scripts/services/facebook.js"></script>
+    <script src="scripts/controllers/chat.js"></script>
+<!--    <script src="scripts/atmo.js"></script>-->
+    <!-- endbuild -->
+</body>
+
+
+
+</html>

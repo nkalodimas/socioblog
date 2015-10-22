@@ -1,0 +1,18 @@
+<h1 class="page-header">
+    Search results
+    <small>for {{ searchTerm }}</small>
+</h1>
+<h3>Total results : {{ totalPosts }}</h3>
+<hr>
+<form role="form" ng-submit="search(1)">
+    <div class="input-group">
+        <input type="text" class="form-control" size="40" ng-model="searchTerm">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </span>
+    </div>
+</form>
+<hr>
+<ng-include src="'views/posts.html'"></ng-include>
